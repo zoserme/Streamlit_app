@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 #import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import time
+#import seaborn as sns
+#from datetime import time
 st.title('Datos Hidrometereológicos Gobierno Regional Piura')
 option = st.selectbox(
 '¿Cómo desearía ser contactado/a?',
