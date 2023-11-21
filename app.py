@@ -13,7 +13,7 @@ st.subheader("Dataset")
 st.dataframe(df)
 y = df.iloc[:, -2]
 x=df.iloc[:, -3]
-chart_data = pd.concat([dataset1, dataset2], axis=1)
+chart_data = pd.concat([x, y], axis=1)
 #chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 st.scatter_chart(chart_data)
 # Mostrar un gráfico de línea con las columnas 13 y 14
