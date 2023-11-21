@@ -10,6 +10,8 @@ st.title("Dashboard de Análisis de Datos")
 # Mostrar el dataset en una tabla
 st.subheader("Dataset")
 st.dataframe(df)
+y = df.iloc[:, -2]
+x=df.iloc[:, -3]
 # Mostrar un gráfico de línea con las columnas 13 y 14
 st.subheader("Gráfico de Columnas 13 y 14")
-st.line_chart(df[[12, 13]])
+st.line_chart(x,y)
