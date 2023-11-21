@@ -12,6 +12,8 @@ st.subheader("Dataset")
 st.dataframe(df)
 y = df.iloc[:, -2]
 x=df.iloc[:, -3]
+chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+st.scatter_chart(chart_data)
 # Mostrar un gráfico de línea con las columnas 13 y 14
-st.subheader("Gráfico de Columnas 13 y 14")
-st.line_chart(x,y)
+#st.subheader("Gráfico de Columnas 13 y 14")
+#st.line_chart(x,y)
