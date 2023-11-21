@@ -12,4 +12,4 @@ st.subheader("Dataset")
 st.dataframe(df)
 # Mostrar un gráfico de línea con las columnas 13 y 14
 st.subheader("Gráfico de Columnas 13 y 14")
-st.line_chart(df[[13, 14]])
+st.line_chart(df[[12, 13]])
