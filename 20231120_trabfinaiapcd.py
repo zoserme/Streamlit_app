@@ -22,7 +22,7 @@ import pandas as pd
 import numpy as np
 #import matplotlib.pyplot as plt
 #import seaborn as sns
-#import folium
+import folium
 import streamlit as st
 
 #!wget -q -O - ipv4.icanhazip.com
