@@ -13,21 +13,20 @@ https://www.youtube.com/watch?v=ZZsyxIWdCko
 """
 
 # Instalar Streamlit
-!pip install streamlit
+#!pip install streamlit
 # pip install streamlit
-! pip install folium
-
+#! pip install folium
+#from streamlit_folium import folium_static
 #Importar las librerías
 #import streamlit as st
+#import seaborn as sns
+#import folium
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#import seaborn as sns
-import folium
 import streamlit as st
 import geopandas as gpd
 import matplotlib.pyplot as plt
-#from streamlit_folium import folium_static
 
 #!wget -q -O - ipv4.icanhazip.com
 
