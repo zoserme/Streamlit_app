@@ -13,8 +13,7 @@ https://www.youtube.com/watch?v=ZZsyxIWdCko
 """
 
 # Instalar Streamlit
-#!pip install streamlit
-# pip install streamlit
+!pip install geopandas
 #! pip install folium
 #from streamlit_folium import folium_static
 #Importar las librerías
