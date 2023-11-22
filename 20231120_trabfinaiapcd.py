@@ -13,17 +13,21 @@ https://www.youtube.com/watch?v=ZZsyxIWdCko
 """
 
 # Instalar Streamlit
-#!pip install streamlit
-#! pip install streamlit pandas folium
+!pip install streamlit
+# pip install streamlit
+! pip install folium
 
 #Importar las librerías
 #import streamlit as st
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #import seaborn as sns
 import folium
 import streamlit as st
+import geopandas as gpd
+import matplotlib.pyplot as plt
+#from streamlit_folium import folium_static
 
 #!wget -q -O - ipv4.icanhazip.com
 
@@ -65,14 +69,14 @@ nansdf_final = df_final.isna().sum()
 print(df_final)
 
 # Filtrar los distritos del departamento de Piura sin repetir
-distritos_piura = df_final[df_final['departamento'] == 'Piura']['distrito'].unique()
+df_piura = df_final['DISTRITO'].unique()
 
 # Crear el mapa con los distritos del departamento de Piura
 piura_map = folium.Map(location=[-5.1949, -80.6323], zoom_start=10)  # Coordenadas del centro de Piura
 
 # Marcar los distritos en el mapa con círculos rojos
-for distrito in distritos_piura:
-    distrito_data = df_final[df_final['distrito'] == distrito].iloc[0]  # Obtener los datos del primer registro del distrito
+for distrito in df_piura:
+    distrito_data = df_final[df_final['DISTRITO'] == distrito].iloc[0]  # Obtener los datos del primer registro del distrito
     latitud = distrito_data['latitud']
     longitud = distrito_data['longitud']
     folium.CircleMarker(
@@ -91,3 +95,38 @@ st.title("Dashboard del Departamento de Piura")
 st.markdown("Mapa en dos dimensiones con los distritos del departamento de Piura")
 # Mostrar el mapa en el dashboard
 st.write(piura_map._repr_html_(), unsafe_allow_html=True)
+
+import matplotlib.pyplot as plt
+# Filtra los datos de latitud y longitud para los distritos de Piura
+piura_data = df_final[['latitud', 'longitud']]
+
+# Carga el archivo shapefile del contorno del departamento de Piura
+import geopandas as gpd
+import matplotlib.pyplot as plt
+peru_mapshp = gpd.read_file("/content/DISTRITOS_inei_geogpsperu_suyopomalia.shp")  # Reemplaza "ruta_del_shapefile.shp" con la ruta de tu archivo shapefile
+
+peru_mapshp.shape
+
+piura_map = peru_mapshp[peru_mapshp['NOMBDEP'] == 'PIURA']
+
+# Crea el plot
+fig, ax = plt.subplots(figsize=(5, 10))
+# Plotea el mapa del Perú
+piura_map.plot(ax=ax, color='lightgray')
+# Plotea únicamente el departamento de Piura
+piura_map.plot(ax=ax, color='white', edgecolor='black', linewidth=0.5)
+# Itera sobre los distritos de Piura y los plotea
+for distrito in df_piura:
+    distrito_data = df_final[df_final['DISTRITO'] == distrito]
+    ax.scatter(distrito_data['longitud'], distrito_data['latitud'], label=distrito)
+# Configura los ejes y el título del plot
+ax.set_xlabel('Longitud')
+ax.set_ylabel('Latitud')
+ax.set_title('Departamento de Piura con sus distritos')
+# Muestra la leyenda al costado del gráfico
+ax.legend(loc='lower left', bbox_to_anchor=(1, 0.62))
+# Muestra el plot
+plt.show()
+
+# Muestra el plot en el dashboard de Streamlit
+st.pyplot(fig)
