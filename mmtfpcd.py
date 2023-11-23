@@ -70,3 +70,6 @@ df_finalf = df_final[(df_final["ESTACION"] == c_Es) & (df_final["UNIDAD_MEDIDA"]
 
 # Ordenar los datos según la columna "estación"
 df_finalfo = df_finalf.sort_values(by="UNIDAD_MEDIDA")
+
+# Mostrar la tabla ordenada
+st.write(df_finalfo)
