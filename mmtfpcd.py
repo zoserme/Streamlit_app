@@ -54,16 +54,19 @@ df_final.shape
 nansdf_final = df_final.isna().sum()
 
 # Crear una lista de opciones para la selección
-opciones = df_final["ESTACION"].unique()
+opEs = df_final["ESTACION"].unique()
 
-# Crear la barra lateral para seleccionar la característica
-caracteristica = st.sidebar.selectbox("Selecciona una característica", opciones)
+# Crear una lista de opciones para la selección de la columna "medida"
+opMe = df_final["UNIDAD_MEDIDA"].unique()
 
-# Filtrar los datos según la característica seleccionada
-df_finalf = df_final[df_final["ESTACION"] == caracteristica]
+# Crear la barra lateral para seleccionar la característica de la columna "estación"
+c_Es = st.sidebar.selectbox("Selecciona una característica de la columna 'ESTACION'", opEs)
+
+# Crear la barra lateral para seleccionar la característica de la columna "medida"
+c_Me = st.sidebar.selectbox("Selecciona una característica de la columna 'UNIDAD_MEDIDA'", opMe)
+
+# Filtrar los datos según las características seleccionadas
+df_finalf = df_final[(df_final["ESTACION"] == c_Es) & (df_final["UNIDAD_MEDIDA"] == c_Me)]
 
 # Ordenar los datos según la columna "estación"
-data_ordenada = df_finalf.sort_values(by="ESTACION")
-
-# Mostrar la tabla ordenada
-st.write(data_ordenada)
+df_finalfo = df_finalf.sort_values(by="ESTACION")
