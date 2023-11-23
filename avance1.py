@@ -12,7 +12,8 @@ import pandas as pd
 import numpy as np
 import datetime
 st.set_page_config(layout="wide")
-import plotly.graph_objs as go
+import plotly.graph_objects as go
+
 #dataset
 #link='https://www.datosabiertos.gob.pe/sites/default/files/tb_medida_estaciones%20%281%29_0.csv'
 #Leo el dataset
